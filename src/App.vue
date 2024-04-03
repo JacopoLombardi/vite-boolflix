@@ -24,8 +24,21 @@ export default {
   },
 
   methods:{
-
+    getApi(){
+      axios.get(this.store.apiUrl, {
+        params:{
+          api_key: this.store.apiKey
+        }
+      })
+        .then(result => {
+          console.log(result.data)
+        })
+    }
   },
+
+  mounted(){
+    this.getApi()
+  }
 };
 </script>
 
