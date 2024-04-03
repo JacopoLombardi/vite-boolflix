@@ -27,11 +27,13 @@ export default {
     getApi(){
       axios.get(this.store.apiUrl, {
         params:{
-          api_key: this.store.apiKey
+          api_key: this.store.apiKey,
+          query: this.store.filmUser
         }
       })
         .then(result => {
-          console.log(result.data)
+          this.storefilmUser = ''
+          this.store.filmArray = result.data.results
         })
     }
   },
@@ -47,7 +49,7 @@ export default {
 <!-- HTML -->
 <template>
 
-  <Header />
+  <Header @searchFilm="getApi()" />
 
   <Main />
 
