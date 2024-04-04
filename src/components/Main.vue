@@ -11,11 +11,28 @@ export default {
     Card
   },
 
+  props:{
+    type: String
+  },
+
   data(){
     return{
-      store
+      
     };
   },
+
+  methods:{
+    arrayToCicle(){
+      return this.type === 'film' ? store.filmArray : store.serieArray
+    }
+  },
+
+  computed:{
+    title(){
+      return this.type === 'film' ? 'Film' : 'Serie TV'
+    }
+  },
+  
 };
 </script>
 
@@ -23,17 +40,17 @@ export default {
 
 <!-- HTML -->
 <template>
+
+  <h2 class="text-center  mt-5">{{ title }}</h2>
+
   <section class="container  d-flex  flex-wrap">
 
     <Card 
-      v-for="item in this.store.filmArray"
+      v-for="item in arrayToCicle()"
       :key="item.id"
-      :title="item.title"
-      :originalTitle="item.original_title"
-      :language="item.original_language"
-      :vote="item.vote_average"
+      :filmAndSerieObject="item"
     />
-    
+
   </section>
 </template>
 

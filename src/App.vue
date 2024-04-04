@@ -24,22 +24,34 @@ export default {
   },
 
   methods:{
-    getApi(){
-      axios.get(this.store.apiUrl, {
+    getApi(apiUrl){
+      axios.get(apiUrl, {
         params:{
-          api_key: this.store.apiKey,
-          query: this.store.filmUser
+          api_key: store.apiKey,
+          query: 'matrix' //store.filmUser
         }
       })
         .then(result => {
-          this.storefilmUser = ''
-          this.store.filmArray = result.data.results
+          store.filmUser = ''
+          // store.filmArray = result.data.results
+          console.log(result.data.results)
+          
+          if(apiUrl === store.apiUrlFilm){
+            store.filmArray = result.data.results
+          }else{
+            store.serieArray = result.data.results
+          }
+
         })
+      console.log(store.filmArray)
+      console.log(store.serieArray)
     }
   },
 
   mounted(){
-    this.getApi()
+    this.getApi(store.apiUrlFilm)
+    this.getApi(store.apiUrlSerie)
+    
   }
 };
 </script>
@@ -49,9 +61,13 @@ export default {
 <!-- HTML -->
 <template>
 
-  <Header @searchFilm="getApi()" />
+  <Header 
+  @searchFilm=" getApi(this.store.apiUrlFilm), 
+                getApi(this.store.apiUrlSerie)" />
 
-  <Main />
+  <Main type="film" />
+
+  <Main type="serie" />
 
   <Footer />
   

@@ -2,21 +2,37 @@
 
 <!-- Javascript -->
 <script>
-import {store} from '../../data/store'
+// import {store} from '../../data/store'
 
 export default {
    props:{
-      title: String,
-      originalTitle: String,
-      language: String,
-      vote: Number
+      filmAndSerieObject: Object
    },
 
   data(){
     return{
-      store
+      // store
+      chooseFlag: '',
+      flagEn: '../../../public/img/en.png',
+      flagIt: '../../../public/img/it.png'
     };
   },
+
+  methods:{
+
+   languageFlag(){
+      this.chooseFlag = this.filmAndSerieObject.original_language
+
+      if(this.chooseFlag === 'en'){
+         return this.flagEn
+      }else if(this.chooseFlag === 'it'){
+         return this.flagIt
+      }
+   }
+
+
+  }
+
 };
 </script>
 
@@ -27,11 +43,11 @@ export default {
 
    <div class="bg-light  border  mt-5 p-3 mx-3">
 
-      <p>titolo: {{ title }}</p>
-      <p>titolo originale: {{ originalTitle }}</p>
-      <p>lingua: {{ language }}</p>
-      <p>voto: {{ vote }}</p>
-
+      <p>titolo: {{ filmAndSerieObject.title || filmAndSerieObject.name }}</p>
+      <p>titolo originale: {{ filmAndSerieObject.original_title || filmAndSerieObject.original_name }}</p>
+      <p>lingua: {{ filmAndSerieObject.original_language }}</p>
+      <img :src="languageFlag()" alt="">
+      <p>voto: {{ filmAndSerieObject.vote_average }}</p>
    </div>
   
 </template>
