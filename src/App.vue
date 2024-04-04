@@ -24,6 +24,26 @@ export default {
   },
 
   methods:{
+    getApiPopular(apiPopular){
+      axios.get(apiPopular, {
+        params:{
+          api_key: store.apiKey,
+        }
+      })
+        .then(result => {
+          
+          if(apiPopular === store.apiUrlPopularFilm){
+            store.popularFilmArray = result.data.results
+          }else{
+            store.popularSerieArray = result.data.results
+          }
+
+          console.log(store.popularFilmArray)
+          console.log(store.popularSerieArray)
+        })
+
+    },
+
     getApi(apiUrl){
       axios.get(apiUrl, {
         params:{
@@ -41,13 +61,14 @@ export default {
           }
 
         })
+      console.log(store.filmArray)
+      console.log(store.serieArray)
     }
   },
 
   mounted(){
-    this.getApi(store.apiUrlFilm)
-    this.getApi(store.apiUrlSerie)
-    
+    this.getApiPopular(store.apiUrlPopularFilm)
+    this.getApiPopular(store.apiUrlPopularSerie)
   }
 };
 </script>

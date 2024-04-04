@@ -22,7 +22,14 @@ export default {
   },
 
   methods:{
+
     arrayToCicle(){
+      if(store.filmArray.length === 0 && this.type === 'film'){
+        return store.popularFilmArray
+      }else if(store.serieArray.length === 0 && this.type === 'serie'){
+        return store.popularSerieArray
+      }
+
       return this.type === 'film' ? store.filmArray : store.serieArray
     }
   },
