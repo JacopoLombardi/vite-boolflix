@@ -42,6 +42,11 @@ export default {
 <template>
 
   <h2 class="text-center  mt-5">{{ title }}</h2>
+  <h4
+    v-if="arrayToCicle().length === 0"
+    class="text-center  text-danger">
+    Non ho trovato nessun elemento corrispondente
+  </h4>
 
   <section class="container  d-flex  flex-wrap">
 

@@ -28,13 +28,11 @@ export default {
       axios.get(apiUrl, {
         params:{
           api_key: store.apiKey,
-          query: 'matrix' //store.filmUser
+          query: store.filmUser
         }
       })
         .then(result => {
           store.filmUser = ''
-          // store.filmArray = result.data.results
-          console.log(result.data.results)
           
           if(apiUrl === store.apiUrlFilm){
             store.filmArray = result.data.results
@@ -43,8 +41,6 @@ export default {
           }
 
         })
-      console.log(store.filmArray)
-      console.log(store.serieArray)
     }
   },
 
