@@ -61,6 +61,7 @@ section{
   h1{
     font-size: 55px;
     color: red;
+    cursor: pointer;
   }
   ._box_input{
     width: 350px;

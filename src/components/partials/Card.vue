@@ -62,6 +62,7 @@ export default {
 
    <div class="_card_container  d-flex  m-2">
 
+      <!-- copertina -->
       <div 
          @mouseover="overed = true"
          @mouseleave="overed = false"  
@@ -77,21 +78,29 @@ export default {
 
          <div
            :class="{'z-2': overed === true}"
-           class="_info  d-flex  flex-column  justify-content-between  align-items-center  text-center  text-white  position-relative  fs-5  fw-semibold  h-100"
+           class="_info  d-flex  flex-column  justify-content-between  align-items-center  text-center  text-white  position-relative  fs-5  fw-bold  h-100"
            >
+            <!-- titoli -->
             <div class="mt-5">
                <p>Title: {{ filmAndSerieObject.title || filmAndSerieObject.name }}</p>
                <p>Original Title: {{ filmAndSerieObject.original_title || filmAndSerieObject.original_name }}</p>
             </div>
 
-            <div class="mb-5">
+            <!-- descrizione -->
+            <div class="_box_description  mt-2  fw-semibold">
+               <p class="_description">{{ filmAndSerieObject.overview }}</p>
+            </div>
+
+            <!-- bandiera -->
+            <div class="mb-2">
                <img
-                  class="img_flag  mt-5"
+                  class="img_flag  mt-4"
                   :src="languageFlag()"
                   :alt="filmAndSerieObject.original_language"
                >
 
-               <ul class="d-flex  p-0  mt-5">
+               <!-- stelline -->
+               <ul class="d-flex  p-0  mt-4">
                   <li>
                      <i
                         v-for="item in starsVote()"
@@ -131,7 +140,11 @@ export default {
    ._info{
       padding: 0 40px;
       bottom: 525px;
-      background-color: rgba(0, 0, 0, 0.594);
+      background-color: rgba(0, 0, 0, 0.671);
+      ._box_description{
+         font-size: 16px;
+         overflow: auto;
+      }
       .img_flag{
          width: 35px;
          height: 25px;

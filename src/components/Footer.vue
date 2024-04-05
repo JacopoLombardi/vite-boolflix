@@ -18,6 +18,7 @@ export default {
 <!-- HTML -->
 <template>
   
+  <div></div>
   
 </template>
 
@@ -26,5 +27,8 @@ export default {
 <!-- CSS -->
 <style lang="scss" scoped>
 
+div{
+  padding-top: 200px;
+}
 
 </style>
