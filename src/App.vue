@@ -38,6 +38,7 @@ export default {
           }else{
             store.popularSerieArray = result.data.results
           }
+          console.log(store.popularFilmArray)
         })
 
     },
@@ -57,7 +58,6 @@ export default {
           }else{
             store.serieArray = result.data.results
           }
-
         })
     }
   },
@@ -75,8 +75,11 @@ export default {
 <template>
 
   <Header 
-  @searchFilm=" getApi(this.store.apiUrlFilm), 
-                getApi(this.store.apiUrlSerie)" />
+  @searchFilm=" getApi(store.apiUrlFilm), 
+                getApi(store.apiUrlSerie)" 
+
+  @homePage=" getApiPopular(store.apiUrlPopularFilm),
+              getApiPopular(store.apiUrlPopularSerie)"/>
 
   <Main type="film" />
 

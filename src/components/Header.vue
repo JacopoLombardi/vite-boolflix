@@ -20,12 +20,11 @@ export default {
     },
 
     homePage(){
-      store.filmUser = ''
+      this.filmUser = ''
+      this.store.filmArray = []
+      this.store.serieArray = []
       this.$emit('homePage')
     }
-
-
-
   }
 };
 </script>
@@ -48,24 +47,27 @@ export default {
 
         <div class="d-flex  align-items-center">
 
-          <div
-            v-if="clicked === true"
-            class="d-flex  flex-row">
+          <transition>
+            <div
+              v-if="clicked === true"
+              class="d-flex  flex-row">
 
-            <input
-              v-model="filmUser"
-              @keyup.enter="searchFilm()"
-              class="form-control"
-              type="text"
-              placeholder="name film"
-            >
-            <button
-              @click="searchFilm()"
-              class="btn  fw-semibold  rounded-3  ms-3">
-              Find
-            </button>
-
-          </div>
+                <input
+                  v-model="filmUser"
+                  @keyup.enter="searchFilm()"
+                  class="form-control"
+                  type="text"
+                  placeholder="name film"
+                >
+              
+                <button
+                  @click="searchFilm()"
+                  class="btn  fw-semibold  rounded-3  ms-3">
+                  Find
+                </button>
+            
+            </div>
+          </transition>
 
           <i
             @click="clicked = !clicked"
@@ -92,10 +94,15 @@ section{
     font-size: 55px;
     color: red;
     cursor: pointer;
+    &:hover{
+      transition: all 0.5s ease;
+      color: rgb(209, 4, 4);
+    }
   }
   i{
     cursor: pointer;
     &:hover{
+      transition: all 0.5s ease;
       color: rgb(208, 208, 208);
     }
   }
@@ -111,5 +118,16 @@ section{
   }
 }
 
+
+// transition tramite il TAG <transition>
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.6s ease-out;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
 
 </style>
