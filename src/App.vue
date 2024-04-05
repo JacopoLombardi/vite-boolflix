@@ -24,6 +24,7 @@ export default {
   },
 
   methods:{
+    // chiamata API film/serie Popolari
     getApiPopular(apiPopular){
       axios.get(apiPopular, {
         params:{
@@ -37,13 +38,10 @@ export default {
           }else{
             store.popularSerieArray = result.data.results
           }
-
-          console.log(store.popularFilmArray)
-          console.log(store.popularSerieArray)
         })
 
     },
-
+    // chiamata API film/serie cercate dall'utente
     getApi(apiUrl){
       axios.get(apiUrl, {
         params:{
@@ -61,8 +59,6 @@ export default {
           }
 
         })
-      console.log(store.filmArray)
-      console.log(store.serieArray)
     }
   },
 

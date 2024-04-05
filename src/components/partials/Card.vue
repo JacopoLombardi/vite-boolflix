@@ -60,16 +60,17 @@ export default {
 <!-- HTML -->
 <template>
 
-   <div class="_card_container  d-flex  m-2">
+   <div class="_card_container  d-flex  m-2  rounded-5">
 
-      <!-- copertina -->
       <div 
          @mouseover="overed = true"
          @mouseleave="overed = false"  
-         class="_card  ">
-         <div class="text-center">
+         class="_card  rounded-5">
+
+         <!-- copertina -->
+         <div class="text-center  rounded-5">
             <img
-               class="_thumbnail  position-relative z-1"
+               class="_thumbnail  position-relative  z-1  rounded-5"
                :src="thumbnail()"
                alt=""
             >
@@ -78,7 +79,7 @@ export default {
 
          <div
            :class="{'z-2': overed === true}"
-           class="_info  d-flex  flex-column  justify-content-between  align-items-center  text-center  text-white  position-relative  fs-5  fw-bold  h-100"
+           class="_info  d-flex  flex-column  justify-content-between  align-items-center  text-center  text-white  position-relative  rounded-5  fs-5  fw-bold  h-100"
            >
             <!-- titoli -->
             <div class="mt-5">
