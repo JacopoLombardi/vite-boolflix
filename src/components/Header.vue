@@ -26,7 +26,7 @@ export default {
 <!-- HTML -->
 <template>
 
-  <section class="d-flex  bg-light">
+  <section class="d-flex  text-white">
     <div class="d-flex  justify-content-between  align-items-center  w-100">
       <h1 class="d-inline-block  fw-bold  ms-5">Boolflix</h1>
 
@@ -57,8 +57,10 @@ export default {
 
 section{
   height: 140px;
+  background-color: rgb(13, 13, 13);
   h1{
     font-size: 55px;
+    color: red;
   }
   ._box_input{
     width: 350px;

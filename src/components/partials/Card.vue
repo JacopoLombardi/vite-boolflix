@@ -60,7 +60,7 @@ export default {
 <!-- HTML -->
 <template>
 
-   <div class="_card_container  d-flex  bg-light">
+   <div class="_card_container  d-flex  m-2">
 
       <div 
          @mouseover="overed = true"
