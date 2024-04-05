@@ -17,7 +17,9 @@ export default {
       flagIt: '../../../public/img/it.png',
 
       numFrom1To10: '',
-      numFrom1To5: ''
+      numFrom1To5: '',
+
+      overed: false
     };
   },
 
@@ -48,7 +50,6 @@ export default {
       this.numFrom1To5 = Math.ceil(this.numFrom1To10 / 2)
       return this.numFrom1To5
    },
-
   }
 
 };
@@ -59,45 +60,56 @@ export default {
 <!-- HTML -->
 <template>
 
-   <div class="_card_container  bg-light  border  mt-5 p-2">
+   <div class="_card_container  d-flex  bg-light">
 
-      <div class="text-center">
-         <img
-            class="_thumbnail"
-            :src="thumbnail()"
-            alt=""
-         >
-      </div>
-      
+      <div 
+         @mouseover="overed = true"
+         @mouseleave="overed = false"  
+         class="_card  ">
+         <div class="text-center">
+            <img
+               class="_thumbnail  position-relative z-1"
+               :src="thumbnail()"
+               alt=""
+            >
+         </div>
+         
 
-      <div class="_info">
-         <p>titolo: {{ filmAndSerieObject.title || filmAndSerieObject.name }}</p>
-         <p>titolo originale: {{ filmAndSerieObject.original_title || filmAndSerieObject.original_name }}</p>
-         <img
-            class="img_flag"
-            :src="languageFlag()"
-            :alt="filmAndSerieObject.original_language"
-         >
-         <p>voto: {{ starsVote() }}</p>
+         <div
+           :class="{'z-2': overed === true}"
+           class="_info  d-flex  flex-column  justify-content-between  align-items-center  text-center  text-white  position-relative  fs-5  fw-semibold  h-100"
+           >
+            <div class="mt-5">
+               <p>Title: {{ filmAndSerieObject.title || filmAndSerieObject.name }}</p>
+               <p>Original Title: {{ filmAndSerieObject.original_title || filmAndSerieObject.original_name }}</p>
+            </div>
 
-         <ul class="d-flex  p-0">
-            <li>
-               <i
-                  v-for="item in starsVote()"
-                  :key="item.id"
-                  class="fa-solid fa-star">
-               </i>
-            </li>
-            <li>
-               <i 
-                  v-for="item in 5 - starsVote()"
-                  :key="item.id"
-                  class="fa-regular fa-star">
-               </i>
-            </li>
+            <div class="mb-5">
+               <img
+                  class="img_flag  mt-5"
+                  :src="languageFlag()"
+                  :alt="filmAndSerieObject.original_language"
+               >
 
-         </ul>
+               <ul class="d-flex  p-0  mt-5">
+                  <li>
+                     <i
+                        v-for="item in starsVote()"
+                        :key="item.id"
+                        class="fa-solid fa-star">
+                     </i>
+                  </li>
+                  <li> 
+                     <i 
+                        v-for="item in (5 - starsVote())"
+                        :key="item.id"
+                        class="fa-regular fa-star">
+                     </i>
+                  </li>
+               </ul>
+            </div>
 
+         </div>
 
       </div>
    </div>
@@ -110,18 +122,21 @@ export default {
 <style lang="scss" scoped>
 
 ._card_container{
-  width: 400px;
-  height: 700px;
-  ._thumbnail{
-     object-fit: cover;
-  }
-  ._info{
-   padding: 0 40px;
-   .img_flag{
-      width: 35px;
-      height: 25px;
+   width: 350px;
+   height: 525px;
+   ._thumbnail{
+      width: 100%;
+      height: 525px;
    }
-  }
+   ._info{
+      padding: 0 40px;
+      bottom: 525px;
+      background-color: rgba(0, 0, 0, 0.594);
+      .img_flag{
+         width: 35px;
+         height: 25px;
+      }
+   }
 }
 
 

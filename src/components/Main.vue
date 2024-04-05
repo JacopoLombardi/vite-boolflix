@@ -47,23 +47,30 @@ export default {
 
 <!-- HTML -->
 <template>
+  
 
-  <h2 class="text-center  mt-5">{{ title }}</h2>
-  <h4
-    v-if="arrayToCicle().length === 0"
-    class="text-center  text-danger">
-    Non ho trovato nessun elemento corrispondente
-  </h4>
+      <h2 class="text-center  mt-5">{{ title }}</h2>
+      <h4
+        v-if="arrayToCicle().length === 0"
+        class="text-center  text-danger">
+        Non ho trovato nessun elemento corrispondente
+      </h4>
+    
+      
 
-  <section class="container  d-flex  flex-wrap">
+        <div class="container-fluid  d-flex  flex-wrap  justify-content-center">
 
-    <Card 
-      v-for="item in arrayToCicle()"
-      :key="item.id"
-      :filmAndSerieObject="item"
-    />
+          <Card 
+            v-for="item in arrayToCicle()"
+            :key="item.id"
+            :filmAndSerieObject="item"
+          />
 
-  </section>
+        </div>
+
+    
+
+  
 </template>
 
 
