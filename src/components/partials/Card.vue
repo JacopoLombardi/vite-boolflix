@@ -76,50 +76,52 @@ export default {
             >
          </div>
          
+         <transition>
+            <div
+               v-if="overed === true"
+            :class="{'z-2': overed === true}"
+            class="_info  d-flex  flex-column  justify-content-between  align-items-center  text-center  text-white  position-relative  rounded-5  fs-5  fw-bold  h-100"
+            >
+               <!-- titoli -->
+               <div class="mt-5">
+                  <p>Title: {{ filmAndSerieObject.title || filmAndSerieObject.name }}</p>
+                  <p>Original Title: {{ filmAndSerieObject.original_title || filmAndSerieObject.original_name }}</p>
+               </div>
 
-         <div
-           :class="{'z-2': overed === true}"
-           class="_info  d-flex  flex-column  justify-content-between  align-items-center  text-center  text-white  position-relative  rounded-5  fs-5  fw-bold  h-100"
-           >
-            <!-- titoli -->
-            <div class="mt-5">
-               <p>Title: {{ filmAndSerieObject.title || filmAndSerieObject.name }}</p>
-               <p>Original Title: {{ filmAndSerieObject.original_title || filmAndSerieObject.original_name }}</p>
+               <!-- descrizione -->
+               <div class="_box_description  mt-2  pe-3  fw-semibold">
+                  <p class="_description">{{ filmAndSerieObject.overview }}</p>
+               </div>
+
+               <!-- bandiera -->
+               <div class="mb-2">
+                  <img
+                     class="img_flag  mt-4"
+                     :src="languageFlag()"
+                     :alt="filmAndSerieObject.original_language.toUpperCase()"
+                  >
+
+                  <!-- stelline -->
+                  <ul class="d-flex  p-0  mt-4">
+                     <li>
+                        <i
+                           v-for="item in starsVote()"
+                           :key="item.id"
+                           class="fa-solid fa-star">
+                        </i>
+                     </li>
+                     <li> 
+                        <i 
+                           v-for="item in (5 - starsVote())"
+                           :key="item.id"
+                           class="fa-regular fa-star">
+                        </i>
+                     </li>
+                  </ul>
+               </div>
+
             </div>
-
-            <!-- descrizione -->
-            <div class="_box_description  mt-2  fw-semibold">
-               <p class="_description">{{ filmAndSerieObject.overview }}</p>
-            </div>
-
-            <!-- bandiera -->
-            <div class="mb-2">
-               <img
-                  class="img_flag  mt-4"
-                  :src="languageFlag()"
-                  :alt="filmAndSerieObject.original_language"
-               >
-
-               <!-- stelline -->
-               <ul class="d-flex  p-0  mt-4">
-                  <li>
-                     <i
-                        v-for="item in starsVote()"
-                        :key="item.id"
-                        class="fa-solid fa-star">
-                     </i>
-                  </li>
-                  <li> 
-                     <i 
-                        v-for="item in (5 - starsVote())"
-                        :key="item.id"
-                        class="fa-regular fa-star">
-                     </i>
-                  </li>
-               </ul>
-            </div>
-
-         </div>
+         </transition>
 
       </div>
    </div>
@@ -151,6 +153,31 @@ export default {
          height: 25px;
       }
    }
+}
+
+
+// customize ScrollBar
+._box_description::-webkit-scrollbar{
+   width: 5px;
+}
+
+._box_description::-webkit-scrollbar-thumb {
+   -webkit-border-radius: 20px;
+   border-radius: 20px;
+   background: rgba(0, 0, 0, 0);
+   border: 1px solid rgba(255, 255, 255, 0.452);
+ }
+
+
+// transition tramite il TAG <transition>
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.3s ease-out;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
 }
 
 

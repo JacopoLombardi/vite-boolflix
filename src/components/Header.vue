@@ -34,7 +34,7 @@ export default {
 <!-- HTML -->
 <template>
 
-  <section class="d-flex  text-white">
+  <section class="d-flex  text-white  mb-5">
     <div class="d-flex  justify-content-between  align-items-center  w-100">
       <h1
         @click="homePage()"
@@ -42,10 +42,10 @@ export default {
         Boolflix
       </h1>
 
-      <div class="_box_input  d-flex  flex-column  align-items-end  me-5  w-25  h-75">
+      <div class="_box_input  d-flex  flex-column  align-items-end  me-5  mt-4  w-25  h-75">
         <h5 class="">Search</h5>
 
-        <div class="d-flex  align-items-center">
+        <div class="d-flex  align-items-center  me-2">
 
           <transition>
             <div

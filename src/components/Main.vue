@@ -48,7 +48,11 @@ export default {
 <!-- HTML -->
 <template>
 
-  <h2 class="text-center  text-white">{{ title }}</h2>
+  <h2
+    :class="{'mt-7': type === 'serie'}"
+    class="text-center  text-white">
+    {{ title }}
+    </h2>
   <h4
     v-if="arrayToCicle().length === 0"
     class="text-center  text-danger">
@@ -73,7 +77,6 @@ export default {
 
 h2{
   font-size: 50px;
-  margin-top: 130px;
   margin-bottom: 20px;
 }
 
