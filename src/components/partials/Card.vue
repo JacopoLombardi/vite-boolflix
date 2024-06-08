@@ -13,11 +13,9 @@ export default {
     return{
       // store
       chooseFlag: '',
-      flagEn: '../../../public/img/en.png',
-      flagIt: '../../../public/img/it.png',
-
-      numFrom1To10: '',
-      numFrom1To5: '',
+      flagEn: '/img/en.png',
+      flagIt: '/img/it.png',
+      flags: ['en', 'it'],
 
       overed: false
     };
@@ -46,9 +44,7 @@ export default {
 
 
    starsVote(){
-      this.numFrom1To10 = this.filmAndSerieObject.vote_average
-      this.numFrom1To5 = Math.ceil(this.numFrom1To10 / 2)
-      return this.numFrom1To5
+      return Math.ceil(this.filmAndSerieObject.vote_average / 2)
    },
   }
 
@@ -65,7 +61,8 @@ export default {
       <div 
          @mouseover="overed = true"
          @mouseleave="overed = false"  
-         class="_card  rounded-5">
+         class="_card  rounded-5"
+      >
 
          <!-- copertina -->
          <div class="text-center  rounded-5">
@@ -79,8 +76,8 @@ export default {
          <transition>
             <div
                v-if="overed === true"
-            :class="{'z-2': overed === true}"
-            class="_info  d-flex  flex-column  justify-content-between  align-items-center  text-center  text-white  position-relative  rounded-5  fs-5  fw-bold  h-100"
+               :class="{'z-2': overed === true}"
+               class="_info  d-flex  flex-column  justify-content-between  align-items-center  text-center  text-white  position-relative  rounded-5  fs-5  fw-bold  h-100"
             >
                <!-- titoli -->
                <div class="mt-5">
@@ -96,10 +93,15 @@ export default {
                <!-- bandiera -->
                <div class="mb-2">
                   <img
+                     v-if="flags.includes(filmAndSerieObject.original_language)"
                      class="img_flag  mt-4"
                      :src="languageFlag()"
                      :alt="filmAndSerieObject.original_language.toUpperCase()"
                   >
+                  <p 
+                     v-else>
+                  {{filmAndSerieObject.original_language.toUpperCase()}}
+                  </p>
 
                   <!-- stelline -->
                   <ul class="d-flex  p-0  mt-4">
