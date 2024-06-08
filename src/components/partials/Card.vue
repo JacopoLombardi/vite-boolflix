@@ -81,7 +81,7 @@ export default {
             >
                <!-- titoli -->
                <div class="mt-5">
-                  <p>Title: {{ filmAndSerieObject.title || filmAndSerieObject.name }}</p>
+                  <p class="fs-3 border-bottom">{{ filmAndSerieObject.title || filmAndSerieObject.name }}</p>
                   <p>Original Title: {{ filmAndSerieObject.original_title || filmAndSerieObject.original_name }}</p>
                </div>
 
